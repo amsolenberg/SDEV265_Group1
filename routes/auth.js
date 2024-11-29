@@ -6,7 +6,12 @@ const router = express.Router();
 
 // ----- REGISTER ROUTE -----
 router.get('/register', (req, res) => {
-  res.render('register', { error: null, title: 'Register' });
+  res.render('register', {
+    error: null,
+    title: 'Register',
+    name: '',
+    email: ''
+  });
 });
 
 router.post('/register', async (req, res) => {
@@ -16,7 +21,12 @@ router.post('/register', async (req, res) => {
     // check if email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).send('Email already registered.');
+      return res.render('register', {
+        error: 'Email is already registered.',
+        name,
+        email,
+        title: 'Register'
+      });
     }
 
     // hash the password
@@ -46,13 +56,19 @@ router.post('/login', async (req, res) => {
     // check if user exists
     const user = await User.findOne({ email });
     if (!user) {
-      return res.render('login', { error: 'Invalid email or password.' });
+      return res.render('login', {
+        error: 'Invalid email or password.',
+        title: 'Login'
+      });
     }
 
     // compare passwords
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.render('login', { error: 'Invalid email or password.' });
+      return res.render('login', {
+        error: 'Invalid email or password.',
+        title: 'Login'
+      });
     }
 
     req.session.user = {
