@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 module.exports = (app) => {
   // serve static files
@@ -29,9 +30,13 @@ module.exports = (app) => {
     })
   );
 
+  app.use(flash());
+
   // pass logged in user to all templates
   app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
     next();
   });
 };
