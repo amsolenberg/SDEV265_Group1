@@ -76,7 +76,7 @@ router.delete('/my-reservations/:id', isAuthenticated, async (req, res) => {
     const reservationId = req.params.id;
 
     await Reservation.findByIdAndDelete(reservationId);
-
+    req.flash('success', 'Reservation deleted successfully!');
     res.redirect('/my-reservations');
   } catch (error) {
     console.error('Error deleting reservation:', error);

@@ -1,0 +1,97 @@
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %> <% if (success && success.length > 0)
+    { %>
+    <div class="alert alert-success"><%= success %></div>
+    <% } %> <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <div class="container mt-4">
+      <h1 class="text-center mb-4">Admin: All Reservations</h1>
+
+      <% if (reservations.length > 0) { %>
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Price</th>
+            <th>Duration</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% reservations.forEach(reservation => { %>
+          <tr>
+            <td><%= reservation.userId.name %></td>
+            <td><%= reservation.userId.email %></td>
+            <td><%= reservation.serviceName %></td>
+            <td data-date="<%= reservation.date %>" class="js-date">
+              <%= new Date(reservation.date).toLocaleDateString('en-US', {
+              weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'
+              }) %>
+            </td>
+            <td data-time="<%= reservation.time %>" class="js-time">
+              <%= new
+              Date(`1970-01-01T${reservation.time}`).toLocaleTimeString('en-US',
+              { hour: 'numeric', minute: '2-digit' }) %>
+            </td>
+            <td>$<%= reservation.price %></td>
+            <td><%= reservation.duration %> mins</td>
+            <td>
+              <form
+                method="POST"
+                action="/admin/reservations/<%= reservation._id %>?_method=DELETE"
+                onsubmit="return confirm('Are you sure youwant to delete this reservation?')"
+              >
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </form>
+              <a
+                href="/admin/reservations/<%= reservation._id %>/edit"
+                class="btn btn-sm btn-primary"
+                >Edit</a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <% } else { %>
+      <p class="text-center">No reservations found.</p>
+      <% } %>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+  <script>
+    document.querySelectorAll('.js-date').forEach((cell) => {
+      const utcDate = new Date(cell.getAttribute('data-date'));
+      const localDate = new Date(
+        utcDate.getUTCFullYear(),
+        utcDate.getUTCMonth(),
+        utcDate.getUTCDate()
+      );
+
+      cell.textContent = localDate.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    });
+
+    document.querySelectorAll('.js-time').forEach((cell) => {
+      const time = cell.getAttribute('data-time');
+      const date = new Date(`1970-01-01T${time}`);
+      cell.textContent = date.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit'
+      });
+    });
+  </script>
+</html>

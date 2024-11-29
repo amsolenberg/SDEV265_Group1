@@ -4,6 +4,19 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 
+function isAdmin(req, res, next) {
+  // console.log('Session User:', req.session.user); // log session user for debugging
+  if (
+    req.session &&
+    req.session.user &&
+    req.session.user.userType === 'admin'
+  ) {
+    return next();
+  }
+  req.flash('error', 'Unauthorized Access');
+  res.redirect('/');
+}
+
 module.exports = (app) => {
   // serve static files
   app.use(express.static('public'));
@@ -39,4 +52,9 @@ module.exports = (app) => {
     res.locals.error = req.flash('error');
     next();
   });
+
+  // export `isAdmin` for use in routes
+  app.isAdmin = isAdmin;
 };
+
+module.exports.isAdmin = isAdmin;

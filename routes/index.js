@@ -5,6 +5,7 @@ const reservationRoutes = require('./reservation');
 const registerRoutes = require('./register');
 const loginRoutes = require('./login');
 const logoutRoutes = require('./logout');
+const adminRoutes = require('./admin')
 
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.use('/', registerRoutes);
 router.use('/', loginRoutes);
 
 router.use('/', logoutRoutes);
+
+router.use('/admin', adminRoutes);
 
 module.exports = router;

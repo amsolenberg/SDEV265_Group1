@@ -40,6 +40,7 @@ configureMiddlewares(app);
 // ----- VIEW ENGINE -----
 // set EJS as the view engine
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // ----- DATABASE -----
 // connect to the MongoDB database using environment variables
