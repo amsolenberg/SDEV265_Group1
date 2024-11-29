@@ -3,10 +3,17 @@
   <body>
     <%- include('./partials/nav.ejs') %>
 
-    <code class="text-center py-5 mt-5 lead"
-      >&lt;!-- Insert Content Here --&gt;</code
-    >
+    <div class="container py-5 mt-5">
+      <div class="text-center">
+        <h1 class="display-4">Welcome to Online Reservations</h1>
+        <p class="lead">Effortlessly book your salon appointments online.</p>
+        <a href="/services" class="btn btn-primary btn-lg mt-3"
+          >View Services</a
+        >
+      </div>
+    </div>
 
-    <%- include('./partials/footer.ejs') %>
+    <%- include('./partials/footer.ejs') %> <%-
+    include('./partials/bootstrap.ejs') %>
   </body>
 </html>

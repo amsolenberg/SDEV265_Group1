@@ -22,6 +22,8 @@ services:
       - ./database:/data/db
     networks:
       - online-reservations_net
+    ports:
+      - 27018:27017
 
 networks:
   online-reservations_net:

@@ -1,0 +1,61 @@
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="container py-5 mt-5">
+      <h1 class="text-center">Register</h1>
+      <p class="text-center">Create an account to manage your reservations.</p>
+
+      <% if (error) { %>
+      <div class="alert alert-danger text-center"><%= error %></div>
+      <% } %>
+
+      <form
+        action="/register"
+        method="POST"
+        class="mx-auto"
+        style="max-width: 400px"
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+      </form>
+
+      <p class="text-center mt-3">
+        Already have an account? <a href="/login">Login here</a>.
+      </p>
+    </div>
+
+    <%- include('./partials/footer.ejs') %> <%-
+    include('./partials/bootstrap.ejs') %>
+  </body>
+</html>
