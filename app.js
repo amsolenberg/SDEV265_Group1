@@ -25,7 +25,7 @@ const loadEnvFile = (filename) => {
 loadEnvFile('database.env');
 
 // validate required environment variables
-const requiredVars = ['DB_HOST', 'DB_USER', 'DB_PASSWORD', 'DB_NAME'];
+const requiredVars = ['DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME'];
 const missingVars = requiredVars.filter((key) => !process.env[key]);
 if (missingVars.length > 0) {
   console.error(
@@ -67,9 +67,8 @@ app.use((req, res) => {
 });
 
 // ----- GLOBAL ERROR HANDLER -----
-// handle unexpected errors gracefully and log details for debugging
-// catches errors that may occur during request processing
+// handle unexpected errors gracefully
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something went wrong!');
+  res.status(err.status || 500).send('Something went wrong!');
 });
