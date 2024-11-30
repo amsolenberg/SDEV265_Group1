@@ -5,7 +5,7 @@ const reservationRoutes = require('./reservation');
 const registerRoutes = require('./register');
 const loginRoutes = require('./login');
 const logoutRoutes = require('./logout');
-const adminRoutes = require('./admin')
+const adminRoutes = require('./adminRoutes');
 
 const router = express.Router();
 

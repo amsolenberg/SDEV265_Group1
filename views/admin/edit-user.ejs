@@ -1,0 +1,38 @@
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body>
+<%- include('../partials/nav.ejs') %>
+<% if (success && success.length > 0)
+{ %>
+    <div class="alert alert-success"><%= success %></div>
+<% } %>
+<% if (error && error.length > 0) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Edit User</h1>
+    <form method="POST" action="/admin/users/<%= user._id %>?_method=PUT">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="<%= user.name %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="userType" class="form-label">Role</label>
+            <select class="form-control" id="userType" name="userType">
+                <option value="user" <%= user.userType === 'user' ? 'selected' : '' %>>User</option>
+                <option value="admin" <%= user.userType === 'admin' ? 'selected' : '' %>>Admin</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="/admin/users" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<%- include('../partials/footer.ejs') %>
+</body>
+</html>

@@ -1,10 +1,10 @@
 const express = require('express');
-const Reservation = require('../models/reservation');
-const { isAdmin } = require('../middlewares');
+const Reservation = require('../../models/reservation');
+const { isAdmin } = require('../../middlewares');
 
 const router = express.Router();
 
-router.get('/reservations', isAdmin, async (req, res) => {
+router.get('/', isAdmin, async (req, res) => {
   try {
     const reservations = await Reservation.find()
       .populate('userId', 'name email')
@@ -19,7 +19,7 @@ router.get('/reservations', isAdmin, async (req, res) => {
   }
 });
 
-router.delete('/reservations/:id', isAdmin, async (req, res) => {
+router.delete('/:id', isAdmin, async (req, res) => {
   try {
     const reservationId = req.params.id;
 
@@ -32,7 +32,7 @@ router.delete('/reservations/:id', isAdmin, async (req, res) => {
   }
 });
 
-router.get('/reservations/:id/edit', isAdmin, async (req, res) => {
+router.get('/:id/edit', isAdmin, async (req, res) => {
   try {
     const reservation = await Reservation.findById(req.params.id);
     if (!reservation) {
@@ -50,7 +50,7 @@ router.get('/reservations/:id/edit', isAdmin, async (req, res) => {
   }
 });
 
-router.put('/reservations/:id', isAdmin, async (req, res) => {
+router.put('/:id', isAdmin, async (req, res) => {
   const { serviceName, date, time, price, duration } = req.body;
   try {
     const updatedReservation = await Reservation.findByIdAndUpdate(
