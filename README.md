@@ -48,26 +48,24 @@ The **Online Reservations System** is a web application designed to manage appoi
    npm install
    ```
 3. Set up environment variables:
-    - Create a `.env` file or configure the environment variables in `env/`:
-        - `env/database.env`
-        - `env/mongo.env`
-    - Variables to configure:
-        - `database.env`:
-            ```bash
-            DB_USER="db_user"
-            DB_PASS="db_pass"
-            DB_HOST="db_hostname"
-            DB_PORT="db_port"
-            DB_NAME="db_name"
-            ```
-        - `mongo.env`
-            ```bash
-            MONGO_INITDB_ROOT_USERNAME="db_user"
-            MONGO_INITDB_ROOT_PASSWORD="db_pass"
-            ```
+    - In the project root directory there is an `.env.example` file. Copy this and rename as `.env`
+    - Configure environment variables:
+        - DB_USER
+        - DB_PASS
+        - DB_HOST
+        - DB_PORT
+        - DB_NAME
+        - SESSION_SECRET
+        - MONGO_INITDB_ROOT_USERNAME 
+        - MONGO_INITDB_ROOT_PASSWORD
+    - In the `app.js` file, if you're not running this in Docker, uncomment lines 2 and 13-30
+        - This should not be done if running in Docker
+    - If running in Docker, if you want to customize the container ports through environment variables, add the following variables to the `.env` file and give them desired values:
+        - ONLINE_RESERVATIONS_APP_3000="####"
+        - ONLINE_RESERVATIONS_DB_27017="####"
 4. Run the application:
     ```bash
-    npm start
+    node app.js
     ```
 5. Access the application:
     - Open a browser and visit `http://localhost:3000`.
@@ -76,11 +74,14 @@ The **Online Reservations System** is a web application designed to manage appoi
 
 ## Running with Docker
 
-1. Build and start the containers:
-    ```bash
-    docker-compose up --build
-    ```
-2. Access the application at `http://localhost:3002`.
+1. Copy the contents of the `docker-compose.yml` file.
+2. Rename `.env.example` to `.env`
+3. Adjust the variable values as necessary
+4. Start the container:
+```bash
+docker compose up -d
+```
+5. Access the application at `http://localhost:3000`.
 
 ---
 
