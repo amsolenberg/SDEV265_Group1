@@ -1,5 +1,5 @@
 const express = require('express');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');  // Uncomment to enable locally saved environment variables in .env file
 const path = require('path');
 
 const connectToDB = require('./db');
@@ -9,30 +9,26 @@ const routes = require('./routes');
 const app = express();
 const port = 3000;
 
-// ----- ENVIRONMENT VARIABLES -----
-// function to load a specific .env file from the env/ directory
-const loadEnvFile = (filename) => {
-  const filePath = path.resolve(__dirname, 'env', filename);
-  const result = dotenv.config({ path: filePath });
-  if (result.error) {
-    console.error(`Failed to load ${filename}:`, result.error);
-  } else {
-    console.log(`Loaded environment variables from ${filename}`);
-  }
-};
+// ---------------------------------------------------------------------------- Uncomment between these lines to enable locally saved environment variables in .env file
+// // ----- ENVIRONMENT VARIABLES -----
+// const result = dotenv.config();
 
-// load environment variables
-loadEnvFile('database.env');
+// if (result.error) {
+//     console.error('Failed to load .env file:', result.error);
+//     process.exit(1);
+// } else {
+//     console.log('Loaded environment variables from .env');
+// }
 
-// validate required environment variables
-const requiredVars = ['DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME'];
-const missingVars = requiredVars.filter((key) => !process.env[key]);
-if (missingVars.length > 0) {
-  console.error(
-    `Missing required environment variables: ${missingVars.join(', ')}`
-  );
-  process.exit(1);
-}
+// const requiredVars = ['DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME', 'SESSION_SECRET'];
+// const missingVars = requiredVars.filter((key) => !process.env[key]);
+// if (missingVars.length > 0) {
+//     console.error(
+//         `Missing required environment variables: ${missingVars.join(', ')}`
+//     );
+//     process.exit(1);
+// }
+// ----------------------------------------------------------------------------
 
 // ----- MIDDLEWARES -----
 configureMiddlewares(app);
