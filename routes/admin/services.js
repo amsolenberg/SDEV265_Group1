@@ -22,8 +22,7 @@ router.get('/create', isAdmin, (req, res) => {
 
 // POST create a new service
 router.post('/', isAdmin, upload.single('image'), async (req, res) => {
-    const {name, description, duration, price} = req.body;
-
+    const {name, description, duration, price, popular} = req.body;
     try {
         const newService = new Service({
             name,
@@ -31,8 +30,8 @@ router.post('/', isAdmin, upload.single('image'), async (req, res) => {
             duration,
             price,
             image: req.file ? `/images/services/${req.file.filename}` : '/images/services/placeholder.webp',
+            popular: popular === 'on', // Checkbox value
         });
-
         await newService.save();
         req.flash('success', `Service "${newService.name}" has been created.`);
         res.redirect('/admin/services');
@@ -60,8 +59,10 @@ router.get('/:id/edit', isAdmin, async (req, res) => {
 
 // PUT update a service
 router.put('/:id', isAdmin, upload.single('image'), async (req, res) => {
-    const {name, description, duration, price} = req.body;
-    const updates = {name, description, duration, price};
+    const {name, description, duration, price, popular} = req.body;
+    const updates = {
+        name, description, duration, price, popular: popular === 'on', // Checkbox value
+    };
 
     if (req.file) {
         updates.image = `/images/services/${req.file.filename}`;

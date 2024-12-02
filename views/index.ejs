@@ -1,18 +1,44 @@
 <html lang="en">
-  <%- include('./partials/head.ejs') %>
-  <body>
-    <%- include('./partials/nav.ejs') %>
+<%- include('./partials/head.ejs') %>
+<body>
+<%- include('./partials/nav.ejs') %>
 
-    <div class="container py-5 mt-5">
-      <div class="text-center">
-        <h1 class="display-4">Welcome to Online Reservations</h1>
-        <p class="lead">Effortlessly book your salon appointments online.</p>
-        <a href="/services" class="btn btn-primary btn-lg mt-3"
-          >View Services</a
-        >
-      </div>
+<div class="hero-section text-center text-light hero">
+    <h1 class="display-4 fw-bold">Welcome to Online Reservations</h1>
+    <p class="lead mt-3">Effortlessly book your salon appointments online.</p>
+    <a href="/services" class="btn btn-primary btn-lg mt-3">View Services</a>
+</div>
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">Our Popular Services</h2>
+    <div class="row">
+        <% popularServices.forEach(service => { %>
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <img
+                            src="<%= service.image || '/images/services/placeholder.webp' %>"
+                            class="card-img-top"
+                            alt="<%= service.name %>"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title"><%= service.name %></h5>
+                        <p class="card-text">
+                            <%= service.description %>
+                        </p>
+                        <a href="/services" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
     </div>
+</div>
 
-    <%- include('./partials/footer.ejs') %>
-  </body>
+<div class="cta-section text-center text-light py-5" style="background: #007bff;">
+    <h2 class="fw-bold">Ready to Book Your Appointment?</h2>
+    <p class="lead">Click below to view all our available services and book online.</p>
+    <a href="/services" class="btn btn-light btn-lg mt-3">Get Started</a>
+</div>
+
+<%- include('./partials/footer.ejs') %>
+</body>
 </html>

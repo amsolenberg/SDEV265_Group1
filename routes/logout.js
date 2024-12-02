@@ -13,7 +13,7 @@ router.get('/logout', (req, res) => {
 
     // clear the session cache
     res.clearCookie('connect.sid');
-    res.redirect('/login');
+    res.redirect('/');
   });
 });
 
