@@ -1,48 +1,40 @@
 <html lang="en">
+  <!-- Include the head partial for metadata, styles, and scripts -->
   <%- include('./partials/head.ejs') %>
   <body>
+    <!-- Include the navigation bar partial -->
     <%- include('./partials/nav.ejs') %>
 
     <div class="container py-5 mt-5">
+      <!-- Page title and description -->
       <h1 class="text-center">Login</h1>
-      <p class="text-center">
-        Access your reservations and manage your account.
-      </p>
+      <p class="text-center">Access your reservations and manage your account.</p>
 
+      <!-- Display an error message if one exists -->
       <% if (error) { %>
       <div class="alert alert-danger text-center"><%= error %></div>
       <% } %>
 
-      <form
-        action="/login"
-        method="POST"
-        class="mx-auto"
-        style="max-width: 400px"
-      >
+      <!-- Login form -->
+      <form action="/login" method="POST" class="mx-auto" style="max-width: 400px">
+        <!-- Email input field -->
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            class="form-control"
-            required
-          />
+          <input type="email" name="email" id="email" class="form-control" required />
         </div>
+
+        <!-- Password input field -->
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            class="form-control"
-            required
-          />
+          <input type="password" name="password" id="password" class="form-control" required />
         </div>
+
+        <!-- Submit button -->
         <button type="submit" class="btn btn-primary w-100">Login</button>
       </form>
     </div>
 
+    <!-- Include the footer partial -->
     <%- include('./partials/footer.ejs') %>
   </body>
 </html>

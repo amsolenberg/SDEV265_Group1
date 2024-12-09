@@ -1,45 +1,59 @@
 <html lang="en">
-<%- include('../partials/head.ejs') %>
-<body>
-<%- include('../partials/nav.ejs') %>
+  <!-- Include the head partial for metadata and styles -->
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <!-- Include the navigation bar partial -->
+    <%- include('../partials/nav.ejs') %>
 
-<div class="container mt-4">
-    <h1 class="text-center mb-4">Create Service</h1>
-    <form method="POST" action="/admin/services" enctype="multipart/form-data">
+    <div class="container mt-4">
+      <!-- Page title -->
+      <h1 class="text-center mb-4">Create Service</h1>
+
+      <!-- Form for creating a new service -->
+      <form method="POST" action="/admin/services" enctype="multipart/form-data">
+        <!-- Service Name -->
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" required />
         </div>
+
+        <!-- Service Description -->
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" name="description" required></textarea>
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" name="description" required></textarea>
         </div>
+
+        <!-- Service Duration -->
         <div class="mb-3">
-            <label for="duration" class="form-label">Duration (minutes)</label>
-            <input type="number" class="form-control" id="duration" name="duration" required>
+          <label for="duration" class="form-label">Duration (minutes)</label>
+          <input type="number" class="form-control" id="duration" name="duration" required />
         </div>
+
+        <!-- Service Price -->
         <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" name="price" required>
+          <label for="price" class="form-label">Price</label>
+          <input type="number" class="form-control" id="price" name="price" required />
         </div>
+
+        <!-- Mark as Popular -->
         <div class="mb-3">
-            <label for="popular" class="form-label">Mark as Popular</label>
-            <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="popular"
-                    name="popular"
-            />
+          <label for="popular" class="form-label">Mark as Popular</label>
+          <input type="checkbox" class="form-check-input" id="popular" name="popular" />
         </div>
+
+        <!-- Service Image Upload -->
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="file" class="form-control" id="image" name="image">
+          <label for="image" class="form-label">Image</label>
+          <input type="file" class="form-control" id="image" name="image" />
         </div>
+
+        <!-- Submit and Cancel Buttons -->
         <button type="submit" class="btn btn-primary">Create Service</button>
         <a href="/admin/services" class="btn btn-secondary">Cancel</a>
-    </form>
-</div>
+      </form>
+    </div>
 
-<%- include('../partials/footer.ejs') %>
-</body>
+    <!-- Include the footer partial -->
+    <%- include('../partials/footer.ejs') %>
+  </body>
 </html>

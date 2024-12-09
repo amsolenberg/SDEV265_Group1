@@ -1,62 +1,45 @@
 <html lang="en">
+  <!-- Include the head partial for metadata and styles -->
   <%- include('./partials/head.ejs') %>
   <body>
+    <!-- Include the navigation bar partial -->
     <%- include('./partials/nav.ejs') %>
 
+    <!-- Display success and error messages if they exist -->
     <% if (success && success.length > 0) { %>
-      <div class="alert alert-success">
-        <%= success %>
-      </div>
-    <% } %>
-  
-    <% if (error && error.length > 0) { %>
-      <div class="alert alert-danger">
-        <%= error %>
-      </div>
+    <div class="alert alert-success"><%= success %></div>
+    <% } %> <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger"><%= error %></div>
     <% } %>
 
     <main class="flex-grow-1">
       <div class="container">
+        <!-- Page header -->
         <header class="text-center mb-5">
           <h1 class="display-4">Our Services</h1>
-          <p class="lead">
-            Discover the wide range of salon services we offer to help you look
-            and feel your best.
-          </p>
+          <p class="lead">Discover the wide range of salon services we offer to help you look and feel your best.</p>
         </header>
+
+        <!-- Display a list of services -->
         <div class="row">
           <% services.forEach(service => { %>
           <div class="col-md-4 mb-4">
             <div class="card h-100">
-              <img
-                src="<%= service.image %>"
-                class="card-img-top"
-                alt="<%= service.name %>"
-              />
+              <!-- Service image -->
+              <img src="<%= service.image %>" class="card-img-top" alt="<%= service.name %>" />
               <div class="card-body">
+                <!-- Service details -->
                 <h5 class="card-title"><%= service.name %></h5>
                 <p class="card-text"><%= service.description %></p>
-                <p>
-                  <strong>Duration:</strong> <%= service.duration %> minutes
-                </p>
+                <p><strong>Duration:</strong> <%= service.duration %> minutes</p>
                 <p><strong>Price:</strong> $<%= service.price %></p>
+
                 <% if (user) { %>
+                <!-- Booking form for logged-in users -->
                 <form action="/reservations" method="POST">
-                  <input
-                    type="hidden"
-                    name="serviceName"
-                    value="<%= service.name %>"
-                  />
-                  <input
-                    type="hidden"
-                    name="duration"
-                    value="<%= service.duration %>"
-                  />
-                  <input
-                    type="hidden"
-                    name="price"
-                    value="<%= service.price %>"
-                  />
+                  <input type="hidden" name="serviceName" value="<%= service.name %>" />
+                  <input type="hidden" name="duration" value="<%= service.duration %>" />
+                  <input type="hidden" name="price" value="<%= service.price %>" />
                   <div class="mb-2">
                     <label for="date-<%= service._id %>">Date:</label>
                     <input
@@ -66,23 +49,25 @@
                       class="form-control"
                       required
                       min="<%= new Date().toISOString().split('T')[0] %>"
+                      <!--
+                      Restricts
+                      dates
+                      to
+                      today
+                      or
+                      later
+                      --
+                    />
                     />
                   </div>
                   <div class="mb-2">
                     <label for="time-<%= service._id %>">Time:</label>
-                    <input
-                      type="time"
-                      name="time"
-                      id="time-<%= service._id %>"
-                      class="form-control"
-                      required
-                    />
+                    <input type="time" name="time" id="time-<%= service._id %>" class="form-control" required />
                   </div>
-                  <button type="submit" class="btn btn-primary">
-                    Book Now
-                  </button>
+                  <button type="submit" class="btn btn-primary">Book Now</button>
                 </form>
                 <% } else { %>
+                <!-- Message for guests -->
                 <p class="text-muted"><a href="/login">Log in</a> to book this service.</p>
                 <% } %>
               </div>
@@ -93,6 +78,7 @@
       </div>
     </main>
 
+    <!-- Include the footer partial -->
     <%- include('./partials/footer.ejs') %>
   </body>
 </html>

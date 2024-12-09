@@ -1,22 +1,23 @@
 <html lang="en">
+  <!-- Include the head partial for metadata and styles -->
   <%- include('./partials/head.ejs') %>
   <body>
+    <!-- Include the navigation bar partial -->
     <%- include('./partials/nav.ejs') %>
 
     <div class="container py-5 mt-5">
+      <!-- Page title and description -->
       <h1 class="text-center">Register</h1>
       <p class="text-center">Create an account to manage your reservations.</p>
 
+      <!-- Display an error message if one exists -->
       <% if (error) { %>
       <div class="alert alert-danger text-center"><%= error %></div>
       <% } %>
 
-      <form
-        action="/register"
-        method="POST"
-        class="mx-auto"
-        style="max-width: 400px"
-      >
+      <!-- Registration form -->
+      <form action="/register" method="POST" class="mx-auto" style="max-width: 400px">
+        <!-- Input for full name -->
         <div class="mb-3">
           <label for="name" class="form-label">Full Name</label>
           <input
@@ -25,9 +26,19 @@
             id="name"
             class="form-control"
             value="<%= name || '' %>"
-            required
+            <!--
+            Preserve
+            input
+            if
+            form
+            submission
+            fails
+            --
           />
+          required />
         </div>
+
+        <!-- Input for email address -->
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
           <input
@@ -36,27 +47,33 @@
             id="email"
             class="form-control"
             value="<%= email || '' %>"
-            required
+            <!--
+            Preserve
+            input
+            if
+            form
+            submission
+            fails
+            --
           />
+          required />
         </div>
+
+        <!-- Input for password -->
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            class="form-control"
-            required
-          />
+          <input type="password" name="password" id="password" class="form-control" required />
         </div>
+
+        <!-- Submit button -->
         <button type="submit" class="btn btn-primary w-100">Register</button>
       </form>
 
-      <p class="text-center mt-3">
-        Already have an account? <a href="/login">Login here</a>.
-      </p>
+      <!-- Link to login page for existing users -->
+      <p class="text-center mt-3">Already have an account? <a href="/login">Login here</a>.</p>
     </div>
 
+    <!-- Include the footer partial -->
     <%- include('./partials/footer.ejs') %>
   </body>
 </html>

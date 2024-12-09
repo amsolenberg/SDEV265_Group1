@@ -1,44 +1,54 @@
 <html lang="en">
-<%- include('./partials/head.ejs') %>
+  <!-- Include the head partial for metadata, styles, and scripts -->
+  <%- include('./partials/head.ejs') %>
 <body>
-<%- include('./partials/nav.ejs') %>
+  <!-- Include the navigation bar partial -->
+  <%- include('./partials/nav.ejs') %>
 
-<div class="hero-section text-center text-light hero">
-    <h1 class="display-4 fw-bold">Welcome to Online Reservations</h1>
-    <p class="lead mt-3">Effortlessly book your salon appointments online.</p>
-    <a href="/services" class="btn btn-primary btn-lg mt-3">View Services</a>
-</div>
+  <!-- Hero section with a welcome message and call-to-action button -->
+  <div class="hero-section text-center text-light hero">
+      <h1 class="display-4 fw-bold">Welcome to Online Reservations</h1>
+      <p class="lead mt-3">Effortlessly book your salon appointments online.</p>
+      <a href="/services" class="btn btn-primary btn-lg mt-3">View Services</a>
+  </div>
 
-<div class="container py-5">
-    <h2 class="text-center mb-4">Our Popular Services</h2>
-    <div class="row">
-        <% popularServices.forEach(service => { %>
-            <div class="col-md-4">
-                <div class="card shadow">
-                    <img
-                            src="<%= service.image || '/images/services/placeholder.webp' %>"
-                            class="card-img-top"
-                            alt="<%= service.name %>"
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title"><%= service.name %></h5>
-                        <p class="card-text">
-                            <%= service.description %>
-                        </p>
-                        <a href="/services" class="btn btn-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        <% }); %>
-    </div>
-</div>
+  <!-- Popular services section -->
+  <div class="container py-5">
+      <h2 class="text-center mb-4">Our Popular Services</h2>
+      <div class="row">
+          <% popularServices.forEach(service => { %>
+              <div class="col-md-4">
+                  <div class="card shadow">
+                      <!-- Service image with a fallback to a placeholder if no image is available -->
+                      <img
+                              src="<%= service.image || '/images/services/placeholder.webp' %>"
+                              class="card-img-top"
+                              alt="<%= service.name %>"
+                      />
+                      <div class="card-body">
+                          <!-- Display the service name -->
+                          <h5 class="card-title"><%= service.name %></h5>
+                          <!-- Display the service description -->
+                          <p class="card-text">
+                              <%= service.description %>
+                          </p>
+                          <!-- Button linking to the services page -->
+                          <a href="/services" class="btn btn-primary">Learn More</a>
+                      </div>
+                  </div>
+              </div>
+          <% }); %>
+      </div>
+  </div>
 
-<div class="cta-section text-center text-light py-5" style="background: #007bff;">
-    <h2 class="fw-bold">Ready to Book Your Appointment?</h2>
-    <p class="lead">Click below to view all our available services and book online.</p>
-    <a href="/services" class="btn btn-light btn-lg mt-3">Get Started</a>
-</div>
+  <!-- Call-to-action section encouraging bookings -->
+  <div class="cta-section text-center text-light py-5" style="background: #007bff;">
+      <h2 class="fw-bold">Ready to Book Your Appointment?</h2>
+      <p class="lead">Click below to view all our available services and book online.</p>
+      <a href="/services" class="btn btn-light btn-lg mt-3">Get Started</a>
+  </div>
 
-<%- include('./partials/footer.ejs') %>
+  <!-- Include the footer partial -->
+  <%- include('./partials/footer.ejs') %>
 </body>
 </html>

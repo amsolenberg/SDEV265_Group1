@@ -1,44 +1,59 @@
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  /* Background image with a dark overlay for better text contrast */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('/images/hero.webp') no-repeat center center/cover;
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
+  /* White text for high contrast against the background */
+  color: white;
+  /* Full viewport height to create a hero section */
+  min-height: 100vh;
+  /* Center content both vertically and horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem; /* Add padding for spacing */
 }
 
 .hero h1 {
-    font-size: 3rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  /* Large font size for the main heading */
+  font-size: 3rem;
+  /* Add shadow to make the text stand out against the background */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .hero p {
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  /* Slightly smaller font size for the subheading */
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem; /* Add spacing below the paragraph */
+  /* Add shadow for better readability */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .hero a {
-    font-size: 1.25rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
+  /* Styling for call-to-action buttons */
+  font-size: 1.25rem;
+  padding: 0.75rem 1.5rem; /* Add padding for a button-like appearance */
+  border-radius: 5px; /* Rounded corners */
 }
 
 .custom-navbar {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-    backdrop-filter: blur(10px); /* Adds a subtle blur effect */
-    transition: background-color 0.3s ease-in-out; /* Smooth transition on hover */
+  /* Semi-transparent black background for a modern look */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Subtle blur effect for background */
+  backdrop-filter: blur(10px);
+  /* Smooth transition for background color changes */
+  transition: background-color 0.3s ease-in-out;
 }
 
 .navbar a.nav-link {
-    color: white;
-    transition: color 0.3s ease-in-out; /* Smooth hover effect */
+  /* Default white color for navbar links */
+  color: white;
+  /* Smooth transition effect for hover state */
+  transition: color 0.3s ease-in-out;
 }
 
 .navbar a.nav-link:hover {
-    color: #007bff; /* Highlight link on hover */
+  /* Highlight color for links on hover */
+  color: #007bff;
 }

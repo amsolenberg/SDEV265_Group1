@@ -1,42 +1,57 @@
 <html lang="en">
-<%- include('../partials/head.ejs') %>
-<body>
-<%- include('../partials/nav.ejs') %>
-<% if (success && success.length > 0)
-{ %>
-    <div class="alert alert-success"><%= success %></div>
-<% } %>
-<% if (error && error.length > 0) { %>
-    <div class="alert alert-danger"><%= error %></div>
-<% } %>
+  <!-- Include the head partial for metadata and styles -->
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <!-- Include the navigation bar partial -->
+    <%- include('../partials/nav.ejs') %>
 
-<div class="container mt-4">
-    <h1 class="text-center mb-4">Create User</h1>
-    <form method="POST" action="/admin/users">
+    <!-- Display success or error messages if provided -->
+    <% if (success && success.length > 0) { %>
+    <div class="alert alert-success"><%= success %></div>
+    <% } %> <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <div class="container mt-4">
+      <!-- Page title -->
+      <h1 class="text-center mb-4">Create User</h1>
+
+      <!-- Form for creating a new user -->
+      <form method="POST" action="/admin/users">
+        <!-- User Name -->
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" required />
         </div>
+
+        <!-- User Email -->
         <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required />
         </div>
+
+        <!-- User Password -->
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required />
         </div>
+
+        <!-- User Role -->
         <div class="mb-3">
-            <label for="userType" class="form-label">Role</label>
-            <select class="form-control" id="userType" name="userType">
-                <option value="user" selected>User</option>
-                <option value="admin">Admin</option>
-            </select>
+          <label for="userType" class="form-label">Role</label>
+          <select class="form-control" id="userType" name="userType">
+            <option value="user" selected>User</option>
+            <option value="admin">Admin</option>
+          </select>
         </div>
+
+        <!-- Submit and Cancel Buttons -->
         <button type="submit" class="btn btn-primary">Create User</button>
         <a href="/admin/users" class="btn btn-secondary">Cancel</a>
-    </form>
-</div>
+      </form>
+    </div>
 
-<%- include('../partials/footer.ejs') %>
-</body>
+    <!-- Include the footer partial -->
+    <%- include('../partials/footer.ejs') %>
+  </body>
 </html>

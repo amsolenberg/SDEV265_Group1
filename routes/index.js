@@ -1,26 +1,22 @@
 const express = require('express');
-const staticRoutes = require('./static');
-const serviceRoutes = require('./service');
-const reservationRoutes = require('./reservation');
-const registerRoutes = require('./register');
-const loginRoutes = require('./login');
-const logoutRoutes = require('./logout');
-const adminRoutes = require('./adminRoutes');
+const staticRoutes = require('./static'); // Routes for serving static pages
+const serviceRoutes = require('./service'); // Routes related to services
+const reservationRoutes = require('./reservation'); // Routes related to reservations
+const registerRoutes = require('./register'); // Routes for user registration
+const loginRoutes = require('./login'); // Routes for user login
+const logoutRoutes = require('./logout'); // Routes for user logout
+const adminRoutes = require('./adminRoutes'); // Admin-specific routes
 
-const router = express.Router();
+const router = express.Router(); // Create a new router instance
 
-router.use('/', staticRoutes);
+// Define routes for various parts of the application
+router.use('/', staticRoutes); // Static routes (e.g., home page, about, etc.)
+router.use('/', serviceRoutes); // Service-related routes
+router.use('/', reservationRoutes); // Reservation-related routes
+router.use('/', registerRoutes); // Registration-related routes
+router.use('/', loginRoutes); // Login-related routes
+router.use('/', logoutRoutes); // Logout-related routes
+router.use('/admin', adminRoutes); // Admin-specific routes under '/admin'
 
-router.use('/', serviceRoutes);
-
-router.use('/', reservationRoutes);
-
-router.use('/', registerRoutes);
-
-router.use('/', loginRoutes);
-
-router.use('/', logoutRoutes);
-
-router.use('/admin', adminRoutes);
-
+// Export the router for use in the main application
 module.exports = router;

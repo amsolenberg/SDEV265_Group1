@@ -1,12 +1,16 @@
 <html>
+  <!-- Include the head partial for metadata and styles -->
   <%- include('./partials/head.ejs') %>
   <body>
+    <!-- Include the navigation bar partial -->
     <%- include('./partials/nav.ejs') %>
 
+    <!-- Content displayed for a missing or non-existent page -->
     <div class="not-found-content">
       Well, this is embarrassing. This page seems to be missing.
     </div>
 
+    <!-- Include the footer partial -->
     <%- include('./partials/footer.ejs') %>
   </body>
 </html>
